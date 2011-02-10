@@ -1,0 +1,3 @@
+This is the first draft of my new and awesome URL shortener using
+the fastest hash table and hash function by Statistics.
+Currently, it uses PHP for the redirect which as you know sucks but I will be making it better as time goes.
