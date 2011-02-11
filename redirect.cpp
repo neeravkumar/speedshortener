@@ -7,10 +7,12 @@ void not_found(int signum)
 {
     exit(22);
 }
-uint32_t inline rotl(uint32_t value, int8_t amount) {
-
-    return ((value) << (amount)) | ((value) >> (32 - (amount)));
-}
+/* 32-bit cross-platform rotl */
+#ifdef _MSC_VER /* use built-in method in MSVC */
+#	define rotl(v, s) (uint32_t)_rotl(v, s)
+#else /* use bitops in GCC; with o2 this gets optimized to a rotl instruction */
+#	define rotl(v, s) (uint32_t)(((uint32_t)(v) << (s)) | ((uint32_t)(v) >> (32 - (s))))
+#endif
 using namespace std;
 using google::dense_hash_map;
 uint32_t MurmurHash3(const void *key, int len, uint32_t seed)
