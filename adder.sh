@@ -6,5 +6,5 @@ usage(){
 [ $# -ne 1 ]  && usage
 sed q possible
 sed -i 's#//add#//add\n\t\turls["'$(sed q possible)'"] = "'$1'";#g' redirect.cpp
-g++ redirect.cpp -o redirect
+g++ redirect.cpp -o redirect -O4
 sed -i 1d possible
