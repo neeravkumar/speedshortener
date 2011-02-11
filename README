@@ -1,3 +1,9 @@
 This is the first draft of my new and awesome URL shortener using
-the fastest hash table and hash function by Statistics.
+the fastest hash table and hash function that I have been able to find.
 Currently, it uses PHP for the redirect which as you know sucks but I will be making it better as time goes.
+
+How it works:
+1. Add URL using adder.sh <URL to shorten(without http://)>
+2. It prints out the URL fragment assigned to your URL.
+3. Execute "./redirect <url-fragment>" It prints out original URL.
+4. Use the URL to do the redirect.
