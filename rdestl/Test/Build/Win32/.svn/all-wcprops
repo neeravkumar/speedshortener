@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 34
+/svn/!svn/ver/206/Test/Build/Win32
+END
+SourceFiles
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/94/Test/Build/Win32/SourceFiles
+END
+stltest.vcproj
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/203/Test/Build/Win32/stltest.vcproj
+END
+stltest.sln
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/206/Test/Build/Win32/stltest.sln
+END
+stltest.bdgcfg
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/94/Test/Build/Win32/stltest.bdgcfg
+END

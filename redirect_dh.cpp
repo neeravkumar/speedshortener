@@ -1,7 +1,12 @@
 #include <cstdio>
-#include <rdestl/hash_map.h>
+#include <google/dense_hash_map>
 #include<cstring>
-#include<stdint.h>
+#include<stdlib.h>
+#include<signal.h>
+void not_found(int signum)
+{
+    exit(22);
+}
 /* 32-bit cross-platform rotl */
 #ifdef _MSC_VER /* use built-in method in MSVC */
 #	define rotl(v, s) (uint32_t)_rotl(v, s)
@@ -9,6 +14,7 @@
 #	define rotl(v, s) (uint32_t)(((uint32_t)(v) << (s)) | ((uint32_t)(v) >> (32 - (s))))
 #endif
 using namespace std;
+using google::dense_hash_map;
 uint32_t MurmurHash3(const void *key, int len, uint32_t seed)
 {
 
@@ -75,42 +81,21 @@ public:
     }
 };
 
-namespace rde
+
+struct eqstr
 {
-template<>
-struct less<char*>
-{
-    bool operator()(const char *lhs, const char *rhs) const
+    bool operator()(const char* s1, const char* s2) const
     {
-        return (lhs == rhs) ? false : strcmp(lhs, rhs) < 0;
+        return (s1 == s2) || (s1 && s2 && strcmp(s1, s2) == 0);
     }
 };
-
-template<>
-struct greater<char*>
-{
-    bool operator()(const char *lhs, const char *rhs) const
-    {
-        return (lhs == rhs) ? false : strcmp(lhs, rhs) > 0;
-    }
-};
-
-template<>
-struct equal_to<char*>
-{
-    bool operator()(const char *lhs, const char *rhs) const
-    {
-        return (lhs == rhs) ? true : strcmp(lhs, rhs) == 0;
-    }
-};
-};
-
-
 
 int main(int argc, char *argv[])
 {
-    rde::hash_map<const char *, const char *, stringhasher_murmur, 6, rde::equal_to<char*>> urls;
+    dense_hash_map<const char*, const char *, stringhasher_murmur, eqstr> urls;
+    urls.set_empty_key(NULL);
     //add
     urls["0"] = "nero.im/hello-world";
+    signal(SIGSEGV, not_found);
     printf("%s\n",urls[argv[1]]);
 }
