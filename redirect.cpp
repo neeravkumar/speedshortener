@@ -109,7 +109,7 @@ struct equal_to<char*>
 
 int main(int argc, char *argv[])
 {
-    rde::hash_map<const char *, const char *, stringhasher_murmur, 6, rde::equal_to<char*>> urls;
+    rde::hash_map<const char *, const char *, stringhasher_murmur, 6, rde::equal_to<char*> > urls;
     //add
     urls["0"] = "nero.im/hello-world";
     printf("%s\n",urls[argv[1]]);
