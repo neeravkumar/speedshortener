@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 33
+/svn/!svn/ver/77/trunk/src/google
+END
+sparsetable
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/77/trunk/src/google/sparsetable
+END
+sparse_hash_set
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/66/trunk/src/google/sparse_hash_set
+END
+dense_hash_set
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/66/trunk/src/google/dense_hash_set
+END
+sparse_hash_map
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/66/trunk/src/google/sparse_hash_map
+END
+type_traits.h
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/!svn/ver/74/trunk/src/google/type_traits.h
+END
+dense_hash_map
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/66/trunk/src/google/dense_hash_map
+END

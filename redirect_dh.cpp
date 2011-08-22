@@ -3,6 +3,7 @@
 #include<cstring>
 #include<stdlib.h>
 #include<signal.h>
+#include<stdint.h>
 void not_found(int signum)
 {
     exit(22);
