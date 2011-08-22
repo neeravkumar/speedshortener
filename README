@@ -5,5 +5,5 @@ Currently, it uses PHP for the redirect which as you know sucks but I will be ma
 How it works:
 1. Add URL using adder.sh <URL to shorten(without http://)>
 2. It prints out the URL fragment assigned to your URL.
-3. Execute "./redirect <url-fragment>" It prints out original URL.
-4. Use the URL to do the redirect.
+3. Execute "./redirect" It now starts a server on 54321 by default.
+4. Go to localhost:54321/<url-fragment> to get to the original URL.

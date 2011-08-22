@@ -2,6 +2,10 @@
 #include <rdestl/hash_map.h>
 #include<cstring>
 #include<stdint.h>
+#include <mongoose/mongoose.h>
+#if !defined(LISTENING_PORT)
+#define LISTENING_PORT "54321"
+#endif
 /* 32-bit cross-platform rotl */
 #ifdef _MSC_VER /* use built-in method in MSVC */
 #	define rotl(v, s) (uint32_t)_rotl(v, s)
@@ -105,12 +109,34 @@ struct equal_to<char*>
 };
 };
 
+rde::hash_map<const char *, const char *, stringhasher_murmur, 6, rde::equal_to<char*> > urls;
 
+static void *callback(enum mg_event event,
+                      struct mg_connection *conn,
+                      const struct mg_request_info *request_info) {
+    char *query= request_info->uri+1;
+    if (event == MG_NEW_REQUEST) {
+        mg_printf(conn, "HTTP/1.1 302 Found\r\n"
+                  "Location: http://%s\r\n\r\n",
+                  urls[query]
+                 );
+        return const_cast<char *>("");
+    } else {
+        return NULL;
+    }
+}
 
-int main(int argc, char *argv[])
+int main()
 {
-    rde::hash_map<const char *, const char *, stringhasher_murmur, 6, rde::equal_to<char*> > urls;
     //add
     urls["0"] = "nero.im/hello-world";
-    printf("%s\n",urls[argv[1]]);
+    //printf("%s\n",urls[argv[1]]);
+    struct mg_context *ctx;
+    const char *options[] = {"listening_ports", LISTENING_PORT, NULL};
+
+    ctx = mg_start(&callback, NULL, options);
+    getchar();  // Wait until user hits "enter"
+    mg_stop(ctx);
+
+    return 0;
 }
